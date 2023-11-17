@@ -1,0 +1,39 @@
+:root{
+    --main-clr: #000;
+    --secondary-clr: #000;
+    --radius: 10px;
+    --spacing: 15px;
+}
+
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #505050;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
+}
+
+.navelement {
+    transition: .15s ease-in-out;
+    text-decoration: none;
+    color: white;
+}
+
+.navelement:hover {
+    text-decoration: underline;
+    color: #999999;
+}
