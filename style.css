@@ -16,7 +16,7 @@ body {
     font-family: Helvetica;
 }
 
-.navbar{
+nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,15 +25,17 @@ body {
     text-decoration: none;
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
+    position: fixed;
+    top: -1px;
 }
 
-.navelement {
+.nav-element {
     transition: .15s ease-in-out;
     text-decoration: none;
     color: white;
 }
 
-.navelement:hover {
+.nav-element:hover {
     text-decoration: underline;
     color: #999999;
 }

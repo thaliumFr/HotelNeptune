@@ -1,13 +1,8 @@
 <?php
-session_start();
+session_start(); // pas touche ou sinon au coin !
 
 
 ?>
-
-<!--    
-    https://trello.com/invite/epsigroupe4/ATTI38cbeacc9a92f1c297f86d02e176aa54DC4EB502
-    https://trello.com/invite/epsigroupe4/ATTI38cbeacc9a92f1c297f86d02e176aa54DC4EB502 
--->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,15 +16,18 @@ session_start();
     <!-- Barre de navigation -->
     <nav class="navbar">
         <ul>
-            <li><a class="active navelement" href="index.php">Accueil</a></li>
-            <li><a class="navelement" href="login.php">Connexion</a></li>
-            <li><a class="navelement" href="register.php">Inscription</a></li>
+            <li><a class="active nav-element" href="index.php">Accueil</a></li>
+            <li><a class="nav-element" href="login.php">Connexion</a></li>
+            <li><a class="nav-element" href="register.php">Inscription</a></li>
         </ul>
     </nav>
     
     <!-- Container = Site entier -->
     <div class="container">
-        
+        <section></section>
+        <section></section>
+        <section>
+        </section>
     </div>
 </body>
 </html
