@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
 :root{
     --main-clr: #000;
     --secondary-clr: #000;
     --radius: 10px;
     --spacing: 15px;
+    --radius: 10px;
 }
 
 
@@ -21,13 +24,41 @@ nav{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #505050;
+    background-color: #119da4;
     text-decoration: none;
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
     position: fixed;
     top: -1px;
+    font-family: "Julius sans one";
+    width: 100%;
+    height: min-content;
 }
+
+
+ul{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0%;
+}
+
+
+
+li{
+    list-style-type: none;
+    padding: 0 30px;
+    margin: auto;
+}
+
+
+
+.profilimage{
+    width: 40px;
+}
+
 
 .nav-element {
     transition: .15s ease-in-out;
@@ -37,5 +68,18 @@ nav{
 
 .nav-element:hover {
     text-decoration: underline;
-    color: #999999;
+    color: #cba135;
+    font-weight: 10;
+}
+
+.button{
+    background-color: #cba135;
+    border: solid 5px #cba03500;
+    padding: 10px;
+    border-radius: var(--radius);
+}
+
+.button:hover{
+    background-color: #119da4;
+    border: solid 5px #cba135;
 }
