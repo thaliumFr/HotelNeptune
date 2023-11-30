@@ -9,7 +9,11 @@ session_start(); // pas touche ou sinon au coin !
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link rel="stylesheet" href="style.css">
+=======
+    <link rel="stylesheet" href="./style.css">
+>>>>>>> 5095853f6c20c86cc8b4586c884482173f920d3d
     <title>Hotel Neptune</title>
 </head>
 <body>
@@ -23,7 +27,11 @@ session_start(); // pas touche ou sinon au coin !
             <li><a class="nav-element" href="usefull.php">Services</a></li>
             <li><a class="nav-element" href="contact.php">Contact</a></li>
             <li><a class="nav-element button" href="login.php">Connexion</a></li>
+<<<<<<< HEAD
             <li><a class="nav-element" href="register.php"><img class="profilimage" src="./image/icons/pngegg.png" alt="Image de profil"></a></li>
+=======
+            <li><a class="nav-element" href="register.php"><img class="profilimage" src="./image/user.png" alt="Image de profil"></a></li>
+>>>>>>> 5095853f6c20c86cc8b4586c884482173f920d3d
         </ul>
     </nav>
     
