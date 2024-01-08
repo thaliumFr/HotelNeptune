@@ -54,6 +54,7 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
         </ul>
     </nav>
     
+
     <!-- Container = Site entier -->
     <div class="container">
         <header data-parallax>
