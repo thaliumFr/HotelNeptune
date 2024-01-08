@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Smooch&display=swap');
 
 :root{
     --main-clr: #000;
     --secondary-clr: #000;
+    --accent-clr: #CBA135;
     --radius: 10px;
     --spacing: 15px;
     --radius: 10px;
@@ -16,13 +18,13 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Helvetica;
+    font-family: Helvetica; 
+    background-color: #e6f0f2;
 }
 
+/* Navbar */
+
 nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 10px;
     background-color: #119da4;
     text-decoration: none;
@@ -35,8 +37,30 @@ nav{
     height: min-content;
 }
 
+.title {
+    font-family: "Dancing Script";
+    font-size: 30px;
+    margin: 0;
+}
 
-ul{
+.presentation {
+    font-family: "Dancing Script";
+    display: flex;
+}
+
+nav p{
+    margin: 0;
+}
+
+.star{
+    fill: var(--accent-clr);
+    aspect-ratio: 36/33;
+    width: 15%;
+    max-width: 25px;
+    height: auto;
+}
+
+.nav-list{
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -45,31 +69,50 @@ ul{
     margin: 0%;
 }
 
-
-
-li{
+nav li{
     list-style-type: none;
     padding: 0 30px;
     margin: auto;
 }
 
-
-
 .profilimage{
-    width: 40px;
+    width: 55px;
+    aspect-ratio: 1;
+    padding: 10%;
+
+    border-radius: 50%;
+    background-color: var(--accent-clr);
 }
 
 
 .nav-element {
-    transition: .15s ease-in-out;
+    transition: .15s;
     text-decoration: none;
     color: white;
 }
 
 .nav-element:hover {
-    text-decoration: underline;
-    color: #cba135;
-    font-weight: 10;
+    font-weight: 700;
+}
+
+header{
+    background-image: url("image/MainBG.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+}
+
+section{
+    min-height: 10vh;
+}
+
+.presentation{
+    
+}
+
+.search li{
+    list-style-type: none;
 }
 
 .button{
