@@ -43,11 +43,6 @@ nav{
     margin: 0;
 }
 
-.presentation {
-    font-family: "Dancing Script";
-    display: flex;
-}
-
 nav p{
     margin: 0;
 }
@@ -108,7 +103,21 @@ section{
 }
 
 .presentation{
-    
+    position: absolute;
+    font-family: "Dancing Script";
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+
+}
+
+.presentation > h2 {
+
+}
+
+.presentation > * {
+    text-align: center;
+    color: white;
 }
 
 .search li{

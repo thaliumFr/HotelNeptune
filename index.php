@@ -58,8 +58,8 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
     <div class="container">
         <header data-parallax>
             <div class="presentation">
-                <h2>Hotel Netpune</h2>
-                <h4>A la rencontre entre le luxe et la mer</h4>
+                <h1>Hotel Netpune</h1>
+                <h2>A la rencontre entre le luxe et la mer</h2>
             </div>
             <div class="search">
                 <ul>
