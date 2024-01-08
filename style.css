@@ -1,137 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Smooch&display=swap');
-
-:root{
-    --main-clr: #000;
-    --secondary-clr: #000;
-    --accent-clr: #CBA135;
-    --radius: 10px;
-    --spacing: 15px;
-    --radius: 10px;
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Smooch&display=swap");
+:root {
+  --main-clr: #000;
+  --secondary-clr: #000;
+  --accent-clr: #CBA135;
+  --radius: 10px;
+  --spacing: 15px;
+  --radius: 10px;
 }
 
-
 *, *:before, *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Helvetica; 
-    background-color: #e6f0f2;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
+  background-color: #e6f0f2;
 }
 
 /* Navbar */
-
-nav{
-    padding: 10px;
-    background-color: #119da4;
-    text-decoration: none;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
-    position: fixed;
-    top: -1px;
-    font-family: "Julius sans one";
-    width: 100%;
-    height: min-content;
+nav {
+  padding: 10px;
+  background-color: #119da4;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: -1px;
+  font-family: "Julius sans one";
+  width: 100%;
+  height: -moz-min-content;
+  height: min-content;
+}
+nav p {
+  margin: 0;
+}
+nav li {
+  list-style-type: none;
+  padding: 0 30px;
+  margin: auto;
+}
+nav .nav-list {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0%;
+}
+nav .nav-element {
+  transition: 0.15s;
+  text-decoration: none;
+  color: white;
+}
+nav .nav-element:hover {
+  font-weight: 700;
 }
 
 .title {
-    font-family: "Dancing Script";
-    font-size: 30px;
-    margin: 0;
+  font-family: "Dancing Script";
+  font-size: 30px;
+  margin: 0;
 }
 
-nav p{
-    margin: 0;
+.star {
+  fill: var(--accent-clr);
+  aspect-ratio: 36/33;
+  width: 15%;
+  max-width: 25px;
+  height: auto;
 }
 
-.star{
-    fill: var(--accent-clr);
-    aspect-ratio: 36/33;
-    width: 15%;
-    max-width: 25px;
-    height: auto;
+.profilimage {
+  width: 55px;
+  aspect-ratio: 1;
+  padding: 10%;
+  border-radius: 50%;
+  background-color: var(--accent-clr);
 }
 
-.nav-list{
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0%;
+header {
+  background-image: url("image/MainBG.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 90vh;
 }
 
-nav li{
-    list-style-type: none;
-    padding: 0 30px;
-    margin: auto;
+section {
+  min-height: 10vh;
 }
 
-.profilimage{
-    width: 55px;
-    aspect-ratio: 1;
-    padding: 10%;
-
-    border-radius: 50%;
-    background-color: var(--accent-clr);
+.presentation {
+  position: absolute;
+  font-family: "Dancing Script";
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+.presentation * {
+  text-align: center;
+  color: white;
 }
 
-
-.nav-element {
-    transition: .15s;
-    text-decoration: none;
-    color: white;
+.search li {
+  list-style-type: none;
 }
 
-.nav-element:hover {
-    font-weight: 700;
+.button {
+  background-color: #cba135;
+  border: solid 5px rgba(203, 160, 53, 0);
+  padding: 10px;
+  border-radius: var(--radius);
 }
-
-header{
-    background-image: url("image/MainBG.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    min-height: 90vh;
-}
-
-section{
-    min-height: 10vh;
-}
-
-.presentation{
-    position: absolute;
-    font-family: "Dancing Script";
-    left: 50%;
-    transform: translate(-50%, -50%);
-    top: 50%;
-
-}
-
-.presentation > h2 {
-
-}
-
-.presentation > * {
-    text-align: center;
-    color: white;
-}
-
-.search li{
-    list-style-type: none;
-}
-
-.button{
-    background-color: #cba135;
-    border: solid 5px #cba03500;
-    padding: 10px;
-    border-radius: var(--radius);
-}
-
-.button:hover{
-    background-color: #119da4;
-    border: solid 5px #cba135;
+.button:hover {
+  background-color: #119da4;
+  border: solid 5px #cba135;
 }
