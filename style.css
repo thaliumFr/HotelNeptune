@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Smooch&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Leckerli+One&family=Smooch&display=swap");
 :root {
   --main-clr: #119da4;
   --secondary-clr: #000;
@@ -84,7 +84,7 @@ nav .UnderlineAnim.UnderlineAnim:hover::after {
 }
 
 .title {
-  font-family: "Dancing Script";
+  font-family: "Leckerli One";
   font-size: 30px;
   margin: 0;
 }
@@ -119,13 +119,14 @@ section {
 
 .presentation {
   position: absolute;
-  font-family: "Dancing Script";
+  font-family: "Leckerli One";
   left: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
   font-size: 35px;
   -webkit-text-stroke-width: 0.1px;
   -webkit-text-stroke-color: var(--accent-clr);
+  letter-spacing: 3px;
 }
 .presentation * {
   text-align: center;

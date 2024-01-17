@@ -6,9 +6,9 @@ $isLoggedIn = isset($_COOKIE['id']);
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
 // Si le formulaire est soumis et complet
-if (isset($_POST['mail']) && isset($_POST['password'])) {
+if (!empty($_POST['mail']) && !empty($_POST['password'])) {
     // On récupère l'utilisateur correspondant au mail
-    $query = $db->prepare('SELECT * FROM users WHERE mail = :mail');
+    $query = $db->prepare('SELECT * FROM Utilisateur WHERE mail = :mail');
     $query->execute([
         'mail' => $_POST['mail']
     ]);
@@ -40,12 +40,12 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Hotel Neptune</title>
 </head>
 <body>
     <?php
-    require_once('./navbar.php');
+    require_once('../navbar.php');
     ?>
     
     <!-- Container = Site entier -->
@@ -65,6 +65,6 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
         </header>
     </div>
 
-    <script src="index.js" defer></script>
+    <script src="../index.js" defer></script>
 </body>
 </html>

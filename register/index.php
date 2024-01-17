@@ -1,29 +1,38 @@
 <?php
 session_start(); // pas touche sinon au coin !!!!
 
-$isLoggedIn = isset($_COOKIE['id']);
+$isLoggedIn = empty($_COOKIE['id']);
 
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
-if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2']) && $_POST['password'] == $_POST['password2']) {
+$message = 'ok';
+if (empty($_POST['nom']) && empty($_POST['prenom']) && empty($_POST['mail']) && empty($_POST['password']) && empty($_POST['password2'])) {
+    $message = "Veuillez remplir tous les champs";
+}
+
+if($message == 'ok' && $_POST['password'] != $_POST['password2']){
+    $message = "Les mots de passe ne correspondent pas";
+}
+
+if($message === 'ok'){
     // Verifier si l'utilisateur existe déjà
-    $query = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $query = $db->prepare('SELECT * FROM Utilisateur WHERE email = ?');
     $query->execute([$_POST['mail']]);
     $user = $query->fetch();
-    
+
     if ($user) {
         $message = "L'utilisateur existe déjà";
     } else {
         // Inscrire l'utilisateur
-        $query = $db->prepare('INSERT INTO users (nom, prenom, email, password) VALUES (?, ?, ?, ?)');
+        $query = $db->prepare('INSERT INTO Utilisateur (nom, prenom, email, password) VALUES (?, ?, ?, ?)');
         $query->execute([$_POST['nom'], $_POST['prenom'], $_POST['mail'], password_hash($_POST['password'], PASSWORD_DEFAULT)]);
         $message = "Vous êtes inscrit";
     }
-} else if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2']) && $_POST['password'] != $_POST['password2']) {
-    $message = "Les mots de passe ne correspondent pas";
-} else if (!isset($_POST['nom']) || !isset($_POST['prenom']) || !isset($_POST['mail']) || !isset($_POST['password']) || !isset($_POST['password2'])) {
-    $message = "Veuillez remplir tous les champs";
+} else {
+    // Afficher le message d'erreur
+    echo $message;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,12 +40,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Hotel Neptune</title>
 </head>
 <body>
     <?php
-    require('./navbar.php');
+    require('../navbar.php');
     ?>
     
     <!-- Container = Site entier -->
@@ -65,6 +74,6 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         </header>
     </div>
 
-    <script src="index.js" defer></script>
+    <script src="../index.js" defer></script>
 </body>
 </html>
