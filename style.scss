@@ -3,13 +3,16 @@
 
 
 :root{
-    --main-clr: #119da4;
-    --secondary-clr: #000;
+    --main-clr: #16BAC5;
+    --secondary-clr: #03256C;
     --accent-clr: #CBA135;
+    --red-clr: #BE363E;
     --white-clr: #e6f0f2;
+    --grey-clr: #C7CBD1;
+    --black-clr: #00030A;
     --radius: 10px;
     --spacing: 15px;
-    --radius: 10px;
+    --radius: 5px;
 }
 
 
@@ -22,6 +25,25 @@ body {
     padding: 0;
     font-family: 'Julius sans one'; 
     background-color: #e6f0f2;
+    font-size: 16px;
+}
+
+h1{
+    font-size: 50px;
+    font-family: 'Leckerli One';
+    width: fit-content;
+}
+
+h2{
+    font-size: 35px;
+    font-family: 'Leckerli One';
+    width: fit-content;
+    margin-block: calc(var(--spacing)*4) calc(var(--spacing)*2);
+}
+
+.navSpacing{
+    display: block;
+    margin-top: 8rem;
 }
 
 /* Navbar */
@@ -65,6 +87,11 @@ nav{
         &:hover {
             font-weight: 700;
         }
+    }
+
+    img{
+        aspect-ratio: 1;
+        height: 100%;
     }
 
     .UnderlineAnim{
@@ -124,10 +151,58 @@ header{
     background-size: cover;
     background-position: center;
     min-height: 90vh;
+
+    form{
+        h1{
+            text-align: center;
+        }
+
+        * {
+            width: fit-content;
+            display: block;
+            margin: var(--spacing) auto;
+        }
+
+        label{
+            margin-bottom: 0;
+        }
+
+        input{
+            margin-top: calc(var(--spacing)/2);
+        }
+    
+        color: var(--white-clr);
+    
+        border-radius: var(--radius);
+    
+        position: absolute;
+        width: fit-content;
+    
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    
+        padding: var(--spacing) calc(var(--spacing) *2);
+        
+        background-color: var(--main-clr);
+    }
 }
 
 section{
-    min-height: 10vh;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+label{
+    display: block;
+    margin-block: calc(var(--spacing) * 2) var(--spacing);
+}
+
+input{
+    display: block;
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    border: none;
 }
 
 .presentation{
@@ -141,10 +216,6 @@ section{
     -webkit-text-stroke-color: var(--accent-clr);
     letter-spacing: 3px;
 
-    h2 {
-
-    }
-
     * {
         text-align: center;
         color: var(--white-clr);
@@ -155,47 +226,86 @@ section{
     list-style-type: none;
 }
 
-.button{
+.button, button{
     background-color: var(--accent-clr);
     border: solid 5px #cba03500;
     padding: 10px;
     border-radius: var(--radius);
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--white-clr);
+
+    display: block;
 
     &:hover{
-        background-color:  var(--main-clr);
-        border: solid 5px var(--accent-clr);
+        transform: scale(1.1);
     }
 }
 
-form{
-    h1{
-        text-align: center;
-    }
+// admin
+.chambresCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 
-    label{
-        display: block;
-        margin-block: calc(var(--spacing) * 2) var(--spacing);
-    }
+input[type="search"]{
+    
+    color: var(--black-clr);
+    
+    width: 100%;
+
+    position: relative;
+}
+
+.search{
+    position: relative;
+    width: 25%;
+    min-width: 200px;
+    display: block;
 
     input{
         display: block;
+        background-color: var(--grey-clr);
         padding: var(--spacing);
-        border-radius: var(--radius);
-        border: none;
     }
 
-    color: var(--white-clr);
+    &::after{
+        content: "";
+        clear: both;
+        height: 80%;
+        aspect-ratio: 1/1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: calc(var(--spacing)/2);
+        background: url('image/icons/search.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
 
-    border-radius: var(--radius);
 
-    position: absolute;
-    width: 90%;
+.SuitesCards{
+    margin-top: var(--spacing);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: var(--spacing);
+}
 
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
+.suiteCard{
     padding: var(--spacing);
+    border: solid 3px var(--grey-clr);
+    border-radius: var(--radius);
+    width: fit-content;
+
     
-    background-color: var(--main-clr);
+}
+
+.managebtn{
+    border: solid 3px var(--secondary-clr);
+    color: var(--secondary-clr);
+    background-color: transparent;
+    width: 100%;
 }

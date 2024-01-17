@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Leckerli+One&family=Smooch&display=swap");
 :root {
-  --main-clr: #119da4;
-  --secondary-clr: #000;
+  --main-clr: #16BAC5;
+  --secondary-clr: #03256C;
   --accent-clr: #CBA135;
+  --red-clr: #BE363E;
   --white-clr: #e6f0f2;
+  --grey-clr: #C7CBD1;
+  --black-clr: #00030A;
   --radius: 10px;
   --spacing: 15px;
-  --radius: 10px;
+  --radius: 5px;
 }
 
 *, *:before, *:after {
@@ -19,6 +22,27 @@ body {
   padding: 0;
   font-family: "Julius sans one";
   background-color: #e6f0f2;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: "Leckerli One";
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+h2 {
+  font-size: 35px;
+  font-family: "Leckerli One";
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-block: calc(var(--spacing) * 4) calc(var(--spacing) * 2);
+}
+
+.navSpacing {
+  display: block;
+  margin-top: 8rem;
 }
 
 /* Navbar */
@@ -58,6 +82,10 @@ nav .nav-element {
 }
 nav .nav-element:hover {
   font-weight: 700;
+}
+nav img {
+  aspect-ratio: 1;
+  height: 100%;
 }
 nav .UnderlineAnim {
   display: inline-block;
@@ -112,9 +140,49 @@ header {
   background-position: center;
   min-height: 90vh;
 }
+header form {
+  color: var(--white-clr);
+  border-radius: var(--radius);
+  position: absolute;
+  width: -moz-fit-content;
+  width: fit-content;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--spacing) calc(var(--spacing) * 2);
+  background-color: var(--main-clr);
+}
+header form h1 {
+  text-align: center;
+}
+header form * {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  margin: var(--spacing) auto;
+}
+header form label {
+  margin-bottom: 0;
+}
+header form input {
+  margin-top: calc(var(--spacing) / 2);
+}
 
 section {
-  min-height: 10vh;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-block: calc(var(--spacing) * 2) var(--spacing);
+}
+
+input {
+  display: block;
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  border: none;
 }
 
 .presentation {
@@ -137,38 +205,76 @@ section {
   list-style-type: none;
 }
 
-.button {
+.button, button {
   background-color: var(--accent-clr);
   border: solid 5px rgba(203, 160, 53, 0);
   padding: 10px;
   border-radius: var(--radius);
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--white-clr);
+  display: block;
 }
-.button:hover {
-  background-color: var(--main-clr);
-  border: solid 5px var(--accent-clr);
+.button:hover, button:hover {
+  transform: scale(1.1);
 }
 
-form {
-  color: var(--white-clr);
-  border-radius: var(--radius);
+.chambresCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+input[type=search] {
+  color: var(--black-clr);
+  width: 100%;
+  position: relative;
+}
+
+.search {
+  position: relative;
+  width: 25%;
+  min-width: 200px;
+  display: block;
+}
+.search input {
+  display: block;
+  background-color: var(--grey-clr);
+  padding: var(--spacing);
+}
+.search::after {
+  content: "";
+  clear: both;
+  height: 80%;
+  aspect-ratio: 1/1;
   position: absolute;
-  width: 90%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  right: 0;
+  top: 0;
+  margin: calc(var(--spacing) / 2);
+  background: url("image/icons/search.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.SuitesCards {
+  margin-top: var(--spacing);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: var(--spacing);
+}
+
+.suiteCard {
   padding: var(--spacing);
-  background-color: var(--main-clr);
-}
-form h1 {
-  text-align: center;
-}
-form label {
-  display: block;
-  margin-block: calc(var(--spacing) * 2) var(--spacing);
-}
-form input {
-  display: block;
-  padding: var(--spacing);
+  border: solid 3px var(--grey-clr);
   border-radius: var(--radius);
-  border: none;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.managebtn {
+  border: solid 3px var(--secondary-clr);
+  color: var(--secondary-clr);
+  background-color: transparent;
+  width: 100%;
 }

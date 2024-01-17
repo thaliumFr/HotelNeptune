@@ -2,7 +2,7 @@
 <nav class="navbar">
         <ul class="nav-list">
             <li>
-                <a class="active nav-element title" href="index.php">
+                <a class="active nav-element title" href="/HotelNeptune">
                     <p>Hotel Neptune</p>
                     <div class="stars">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 33" class="star">
@@ -23,15 +23,15 @@
                     </div>
                 </a>
             </li>
-            <li><a class="nav-element UnderlineAnim" href="search.php">Chambres et Suites</a></li>
-            <li><a class="nav-element UnderlineAnim" href="kitchen.php">Restauration</a></li>
-            <li><a class="nav-element UnderlineAnim" href="noboring.php">Activités</a></li>
-            <li><a class="nav-element UnderlineAnim" href="usefull.php">Services</a></li>
-            <li><a class="nav-element UnderlineAnim" href="contact.php">Contact</a></li>
-            <?php if ($isLoggedIn) { ?>
-            <li><a class="nav-element button" href="login.php">Connexion</a></li>
+            <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/search">Chambres et Suites</a></li>
+            <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/kitchen">Restauration</a></li>
+            <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/noboring">Activités</a></li>
+            <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/usefull">Services</a></li>
+            <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/contact">Contact</a></li>
+            <?php if (!$isLoggedIn) { ?>
+            <li><a class="nav-element button" href="/HotelNeptune/login">Connexion</a></li>
             <?php } else { ?>
-            <li><a class="nav-element" href="register.php"><img class="profilimage" src="./image/icons/pngegg.png" alt="Image de profil"></a></li>
+            <li><a class="nav-element" href="/HotelNeptune/register"><img class="profilimage" src="/HotelNeptune/image/icons/pngegg.png" alt="Image de profil"></a></li>
             <?php } ?>
         </ul>
     </nav>
