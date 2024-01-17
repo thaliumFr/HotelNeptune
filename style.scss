@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Smooch&display=swap');
 
 :root{
-    --main-clr: #000;
+    --main-clr: #119da4;
     --secondary-clr: #000;
     --accent-clr: #CBA135;
+    --white-clr: #e6f0f2;
     --radius: 10px;
     --spacing: 15px;
     --radius: 10px;
@@ -18,7 +19,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Helvetica; 
+    font-family: 'Julius sans one'; 
     background-color: #e6f0f2;
 }
 
@@ -26,15 +27,15 @@ body {
 
 nav{
     padding: 10px;
-    background-color: #119da4;
+    background-color: var(--main-clr);
     text-decoration: none;
-    color: white;
+    color: var(--white-clr);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
     position: fixed;
     top: -1px;
-    font-family: "Julius sans one";
     width: 100%;
     height: min-content;
+    z-index: 999;
 
     p{
         margin: 0;
@@ -58,11 +59,38 @@ nav{
     .nav-element {
         transition: .15s;
         text-decoration: none;
-        color: white;
+        color: var(--white-clr);
     
         &:hover {
             font-weight: 700;
         }
+    }
+
+    .UnderlineAnim{
+        display: inline-block;
+    position: relative;
+        
+    &.UnderlineAnim::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color:white;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+
+    &.UnderlineAnim:hover{
+        font-weight: bold;
+
+        &::after{
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+      }
     }
 }
 
@@ -107,6 +135,9 @@ section{
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
+    font-size: 35px;
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: var(--accent-clr);
 
     h2 {
 
@@ -114,7 +145,7 @@ section{
 
     * {
         text-align: center;
-        color: white;
+        color: var(--white-clr);
     }
 }
 
@@ -123,13 +154,46 @@ section{
 }
 
 .button{
-    background-color: #cba135;
+    background-color: var(--accent-clr);
     border: solid 5px #cba03500;
     padding: 10px;
     border-radius: var(--radius);
 
     &:hover{
-        background-color: #119da4;
-        border: solid 5px #cba135;
+        background-color:  var(--main-clr);
+        border: solid 5px var(--accent-clr);
     }
+}
+
+form{
+    h1{
+        text-align: center;
+    }
+
+    label{
+        display: block;
+        margin-block: calc(var(--spacing) * 2) var(--spacing);
+    }
+
+    input{
+        display: block;
+        padding: var(--spacing);
+        border-radius: var(--radius);
+        border: none;
+    }
+
+    color: var(--white-clr);
+
+    border-radius: var(--radius);
+
+    position: absolute;
+    width: 90%;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: var(--spacing);
+    
+    background-color: var(--main-clr);
 }

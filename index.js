@@ -8,7 +8,6 @@ function parallax() {
     });
 }
 
-
 document.addEventListener('scroll', (e) => {
     parallax();
 })
