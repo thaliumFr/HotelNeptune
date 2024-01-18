@@ -6,7 +6,7 @@ $isLoggedIn = empty($_COOKIE['id']);
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
 $message = 'ok';
-if (empty($_POST['nom']) && empty($_POST['prenom']) && empty($_POST['mail']) && empty($_POST['password']) && empty($_POST['password2'])) {
+if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['password2'])) {
     $message = "Veuillez remplir tous les champs";
 }
 
@@ -16,7 +16,7 @@ if($message == 'ok' && $_POST['password'] != $_POST['password2']){
 
 if($message === 'ok'){
     // Verifier si l'utilisateur existe déjà
-    $query = $db->prepare('SELECT * FROM Utilisateur WHERE email = ?');
+    $query = $db->prepare('SELECT email FROM Utilisateur WHERE email = ?');
     $query->execute([$_POST['mail']]);
     $user = $query->fetch();
 
@@ -24,13 +24,12 @@ if($message === 'ok'){
         $message = "L'utilisateur existe déjà";
     } else {
         // Inscrire l'utilisateur
-        $query = $db->prepare('INSERT INTO Utilisateur (nom, prenom, email, password) VALUES (?, ?, ?, ?)');
+        $query = $db->prepare('INSERT INTO Utilisateur (nom, prenom, email, passwd) VALUES (?, ?, ?, ?)');
         $query->execute([$_POST['nom'], $_POST['prenom'], $_POST['mail'], password_hash($_POST['password'], PASSWORD_DEFAULT)]);
         $message = "Vous êtes inscrit";
+
+
     }
-} else {
-    // Afficher le message d'erreur
-    echo $message;
 }
 
 ?>
@@ -69,9 +68,14 @@ if($message === 'ok'){
                 <label for="password2">Confirmer le mot de passe</label>
                 <input type="password" name="password2" id="password2" placeholder="Confirmer le mot de passe">
 
+                <?php if($message !== 'ok'){ ?>
+                <label class="err"><?php echo $message; ?></label>
+                <?php } ?> 
+
                 <input type="submit" value="S'inscrire">
             </form>
         </header>
+        <p>Déjà client ? <a href="../login/">Se connecter !</a></p>
     </div>
 
     <script src="../index.js" defer></script>

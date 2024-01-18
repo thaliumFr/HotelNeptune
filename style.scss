@@ -97,6 +97,7 @@ nav{
     .UnderlineAnim{
     display: inline-block;
     position: relative;
+    
         
     &.UnderlineAnim::after {
         content: '';
@@ -108,7 +109,7 @@ nav{
         left: 0;
         background-color:white;
         transform-origin: bottom right;
-        transition: transform 0.25s ease-out;
+        transition: transform 0.15s ease-out;
       }
 
     &.UnderlineAnim:hover{
@@ -119,6 +120,16 @@ nav{
             transform-origin: bottom left;
         }
       }
+    }
+}
+
+.err{
+    color: var(--red-clr);
+}
+
+.container{
+    p{
+        text-align: center;
     }
 }
 
@@ -237,6 +248,8 @@ input{
 
     display: block;
 
+    transition: transform 0.15s ease-out;
+
     &:hover{
         transform: scale(1.1);
     }
@@ -304,8 +317,29 @@ input[type="search"]{
 }
 
 .managebtn{
-    border: solid 3px var(--secondary-clr);
-    color: var(--secondary-clr);
+    --color: var(--secondary-clr);
+    border: solid 3px var(--color);
+    color: var(--color);
     background-color: transparent;
     width: 100%;
+}
+
+.deletebtn{
+    --color: var(--red-clr);
+    border: solid 3px var(--color);
+    color: var(--color);
+    color: var(--red-clr);
+    background-color: transparent;
+    width: 100%;
+    margin-top: var(--spacing);
+}
+
+.validatebtn{
+    --color: var(--main-clr);
+    border: solid 3px var(--color);
+    color: var(--color);
+    color: var(--red-clr);
+    background-color: transparent;
+    width: 100%;
+    margin-top: var(--spacing);
 }

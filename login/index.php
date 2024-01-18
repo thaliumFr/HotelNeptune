@@ -5,6 +5,8 @@ $isLoggedIn = isset($_COOKIE['id']);
 
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
+$message = 'ok';
+
 // Si le formulaire est soumis et complet
 if (!empty($_POST['mail']) && !empty($_POST['password'])) {
     // On récupère l'utilisateur correspondant au mail
@@ -59,10 +61,15 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe">
+                
+                <?php if($message !== 'ok'){ ?>
+                <label class="err"><?php echo $message; ?></label>
+                <?php } ?>
 
                 <input type="submit" value="Se connecter">
             </form>
         </header>
+        <p>Pas encore de compte? <a href="../register/">Nous rejoindre!</a></p>
     </div>
 
     <script src="../index.js" defer></script>

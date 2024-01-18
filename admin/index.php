@@ -37,36 +37,18 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 </span>
             </form>
             <div class="SuitesCards">
+                <?php
+                    for ($i=0; $i < 4; $i++) { 
+                ?>
                 <div class="suiteCard">
                     <h3>chambre n°45685</h3>
                     <p>25m²</p>
                     <p>2 pers</p>
                     <button type="button" class="managebtn" >Manage</button>
                 </div>
-                <div class="suiteCard">
-                    <h3>chambre n°45685</h3>
-                    <p>25m²</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
-                <div class="suiteCard">
-                    <h3>chambre n°45685</h3>
-                    <p>25m²</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
-                <div class="suiteCard">
-                    <h3>chambre n°45685</h3>
-                    <p>25m²</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
-                <div class="suiteCard">
-                    <h3>chambre n°45685</h3>
-                    <p>25m²</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
+                <?php
+                    }
+                ?>
                 <button type="button" class="addbtn">Ajouter</button>
             </div>
         </section>
@@ -78,24 +60,19 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 </span>
             </form>
             <div class="SuitesCards">
+                <?php
+                    for ($i=0; $i < 5; $i++) { 
+                ?>
                 <div class="suiteCard">
                     <h3>ID 054</h3>
                     <p>Chambre 04</p>
                     <p>2 pers</p>
                     <button type="button" class="managebtn" >Manage</button>
+                    <button type="button" class="deletebtn" >Delete</button>
                 </div>
-                <div class="suiteCard">
-                    <h3>ID 054</h3>
-                    <p>Chambre 06</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
-                <div class="suiteCard">
-                    <h3>ID 054</h3>
-                    <p>Chambre 01</p>
-                    <p>Jean-Sébastien Dubois</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
+                <?php
+                    }
+                ?>
                 <button type="button" class="addbtn">Ajouter</button>
             </div>
         </section>
@@ -107,28 +84,22 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 </span>
             </form>
             <div class="SuitesCards">
-                <div class="suiteCard">
-                    <h3>ID 054</h3>
-                    <p>Chambre 04</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
-                <div class="suiteCard">
-                    <h3>ID 054</h3>
-                    <p>Chambre 06</p>
-                    <p>2 pers</p>
-                    <button type="button" class="managebtn" >Manage</button>
-                </div>
+                <?php
+                    for ($i=0; $i < 5; $i++) { 
+                ?> 
                 <div class="suiteCard">
                     <h3>ID 054</h3>
                     <p>Chambre 01</p>
                     <p>Jean-Sébastien Dubois</p>
                     <button type="button" class="managebtn" >Manage</button>
+                    <button type="button" class="deletebtn" >Delete</button>
                 </div>
+                <?php
+                    }
+                ?>
                 <button type="button" class="addbtn">Ajouter</button>
             </div>
         </section>
     </section>
-    
 </body>
 </html>
