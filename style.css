@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 
-body {
+body, input {
   margin: 0;
   padding: 0;
   font-family: "Julius sans one";
@@ -26,14 +26,15 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 40px;
   font-family: "Leckerli One";
   width: -moz-fit-content;
   width: fit-content;
+  margin: 0 auto;
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 45px;
   font-family: "Leckerli One";
   width: -moz-fit-content;
   width: fit-content;
@@ -64,16 +65,22 @@ nav p {
 }
 nav li {
   list-style-type: none;
-  padding: 0 30px;
-  margin: auto;
+  padding: 0 var(--spacing);
+  margin: auto 0;
 }
 nav .nav-list {
   text-align: center;
   display: flex;
-  justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
   margin: 0%;
+  gap: calc(var(--spacing) * 2);
+}
+nav .nav-list > li:nth-child(1) {
+  margin-right: auto;
+}
+nav .nav-list > li:last-child {
+  margin-left: auto;
 }
 nav .nav-element {
   transition: 0.15s;
@@ -177,7 +184,6 @@ header form input {
 }
 
 section {
-  max-width: 90%;
   margin: 0 auto;
 }
 
@@ -199,7 +205,6 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
-  font-size: 35px;
   -webkit-text-stroke-width: 0.1px;
   -webkit-text-stroke-color: var(--accent-clr);
   letter-spacing: 3px;
@@ -208,8 +213,24 @@ input {
   text-align: center;
   color: var(--white-clr);
 }
+.presentation form {
+  transform: none;
+  position: static;
+  background: none;
+  width: 100%;
+  display: flex;
+  padding-right: 0;
+}
+.presentation form input {
+  margin: auto 0;
+}
+.presentation form .searchbar {
+  font-family: "Julius sans one";
+  margin: 10px;
+  color: var(--secondary-clr);
+}
 
-.search li {
+.searchSuite li {
   list-style-type: none;
 }
 
@@ -240,10 +261,12 @@ input[type=search] {
 }
 
 .search {
+  display: flex;
   position: relative;
   width: 25%;
   min-width: 200px;
   display: block;
+  font-family: "Leckerly One";
 }
 .search input {
   display: block;
@@ -264,6 +287,13 @@ input[type=search] {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.search .searchbar {
+  color: var(--secondary-clr);
+  background-color: var(--white-clr);
+  border: solid;
+  border-radius: var(--radius);
+  border-width: 1px;
+}
 
 .SuitesCards {
   margin-top: var(--spacing);
@@ -279,6 +309,22 @@ input[type=search] {
   border-radius: var(--radius);
   width: -moz-fit-content;
   width: fit-content;
+}
+.suiteCard input[type=number] {
+  background-color: var(--grey-clr);
+}
+.suiteCard input, .suiteCard button {
+  margin-top: var(--spacing);
+}
+.suiteCard.add {
+  border-color: var(--accent-clr);
+}
+.suiteCard h3 > input {
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  font-weight: inherit;
+  font-family: inherit;
 }
 
 .managebtn {
@@ -296,15 +342,35 @@ input[type=search] {
   color: var(--red-clr);
   background-color: transparent;
   width: 100%;
-  margin-top: var(--spacing);
 }
 
 .validatebtn {
-  --color: var(--main-clr);
-  border: solid 3px var(--color);
-  color: var(--color);
-  color: var(--red-clr);
-  background-color: transparent;
+  --color: var(--secondary-clr);
+  color: var(--white-clr);
+  background-color: var(--color);
   width: 100%;
-  margin-top: var(--spacing);
+}
+
+.Section1 {
+  background-image: url("image/coucherSoleil.jpg");
+  margin-top: 50px;
+}
+.Section1 div {
+  margin-top: 0;
+}
+
+section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  width: 100%;
+  padding: calc(var(--spacing) * 8) 0;
+}
+section h1 {
+  color: var(--white-clr);
+}
+section p {
+  width: 60ch;
+  margin: calc(var(--spacing) * 4) auto;
 }

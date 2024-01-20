@@ -28,7 +28,22 @@ if($message === 'ok'){
         $query->execute([$_POST['nom'], $_POST['prenom'], $_POST['mail'], password_hash($_POST['password'], PASSWORD_DEFAULT)]);
         $message = "Vous êtes inscrit";
 
+        $query = $db->prepare('SELECT * FROM utilisateur WHERE email = :email;');
+        $query->execute([
+            'email' => $_POST['email']
+        ]);
+        $user = $query->fetch();
 
+         // On connecte l'utilisateur
+         $_SESSION['id'] = $user['id'];
+         $_SESSION['email'] = $user['email'];
+         $_SESSION['firstname'] = $user['firstname'];
+         $_SESSION['lastname'] = $user['lastname'];
+         $_SESSION['isAdmin'] = $user['isAdmin'];
+
+         // On redirige vers la page d'accueil
+         header('Location: ../index.php');
+         exit;
     }
 }
 

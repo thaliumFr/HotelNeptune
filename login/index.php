@@ -25,7 +25,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $_SESSION['email'] = $user['email'];
             $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['lastname'] = $user['lastname'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['isAdmin'] = $user['isAdmin'];
 
             // On redirige vers la page d'accueil
             header('Location: ../index.php');

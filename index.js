@@ -1,9 +1,8 @@
-const parralaxPower = 0.5;
 const parallaxElements = document.querySelectorAll("*[data-parallax]");
 
 function parallax() {
-    let scrollY = window.scrollY*parralaxPower;
     parallaxElements.forEach(element => {
+        let scrollY = window.scrollY*element.dataset.parallax;
         element.style.backgroundPosition = "center "+scrollY+"px";
     });
 }

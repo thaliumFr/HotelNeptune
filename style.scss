@@ -20,7 +20,7 @@
     box-sizing: border-box;
 }
 
-body {
+body, input {
     margin: 0;
     padding: 0;
     font-family: 'Julius sans one'; 
@@ -29,13 +29,14 @@ body {
 }
 
 h1{
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Leckerli One';
     width: fit-content;
+    margin: 0 auto;
 }
 
 h2{
-    font-size: 35px;
+    font-size: 45px;
     font-family: 'Leckerli One';
     width: fit-content;
     margin-block: calc(var(--spacing)*4) calc(var(--spacing)*2);
@@ -66,17 +67,27 @@ nav{
 
     li{
         list-style-type: none;
-        padding: 0 30px;
-        margin: auto;
+        padding: 0 var(--spacing);
+        margin: auto 0;
     }
+
+    
 
     .nav-list{
         text-align: center;
         display: flex;
-        justify-content: space-between;
         width: 100%;
         box-sizing: border-box;
         margin: 0%;
+        gap: calc(var(--spacing) * 2);
+        & > li{
+            &:nth-child(1){
+                margin-right: auto;
+            }
+            &:last-child{
+                margin-left: auto;
+            }
+        }
     }
 
     .nav-element {
@@ -200,7 +211,6 @@ header{
 }
 
 section{
-    max-width: 90%;
     margin: 0 auto;
 }
 
@@ -222,7 +232,6 @@ input{
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
-    font-size: 35px;
     -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: var(--accent-clr);
     letter-spacing: 3px;
@@ -231,9 +240,29 @@ input{
         text-align: center;
         color: var(--white-clr);
     }
+
+    form{
+        transform: none;
+        position: static;
+        background: none;
+        width: 100%;
+        display: flex;
+        padding-right: 0;   
+
+        input{
+            margin: auto 0;
+        }   
+
+        .searchbar{
+            font-family: "Julius sans one";
+            margin: 10px;
+            color: var(--secondary-clr);
+        }
+    }
+    
 }
 
-.search li{
+.searchSuite li{
     list-style-type: none;
 }
 
@@ -271,10 +300,12 @@ input[type="search"]{
 }
 
 .search{
+    display: flex;
     position: relative;
     width: 25%;
     min-width: 200px;
     display: block;
+    font-family: "Leckerly One";
 
     input{
         display: block;
@@ -296,6 +327,14 @@ input[type="search"]{
         background-repeat: no-repeat;
         background-size: contain;
     }
+
+    .searchbar{
+        color: var(--secondary-clr);
+        background-color: var(--white-clr);
+        border: solid;
+        border-radius: var(--radius);
+        border-width: 1px;
+    }
 }
 
 
@@ -313,7 +352,25 @@ input[type="search"]{
     border-radius: var(--radius);
     width: fit-content;
 
+    input[type="number"]{
+        background-color: var(--grey-clr);
+    }
+
+    input, button{
+        margin-top: var(--spacing);
+    }
+
+    &.add{
+        border-color: var(--accent-clr);
+    }
     
+    h3 > input{
+        font-size: inherit;
+        padding: 0;
+        margin: 0;
+        font-weight: inherit;
+        font-family: inherit;
+    }
 }
 
 .managebtn{
@@ -331,15 +388,39 @@ input[type="search"]{
     color: var(--red-clr);
     background-color: transparent;
     width: 100%;
-    margin-top: var(--spacing);
 }
 
 .validatebtn{
-    --color: var(--main-clr);
-    border: solid 3px var(--color);
-    color: var(--color);
-    color: var(--red-clr);
-    background-color: transparent;
+    --color: var(--secondary-clr);
+    color: var(--white-clr);
+    background-color: var(--color);
     width: 100%;
-    margin-top: var(--spacing);
+}
+
+.Section1{
+    background-image: url("image/coucherSoleil.jpg");
+    margin-top: 50px;
+
+    div{
+        margin-top: 0;
+    }
+}
+
+section{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    width: 100%;
+
+    padding: calc(var(--spacing)*8) 0;
+
+    h1{
+        color: var(--white-clr);
+    }
+
+    p{
+        width: 60ch;
+        margin: calc(var(--spacing)*4) auto;
+    }
 }
