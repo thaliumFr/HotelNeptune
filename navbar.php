@@ -28,10 +28,10 @@
             <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/noboring">Activités</a></li>
             <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/usefull">Services</a></li>
             <li><a class="nav-element UnderlineAnim" href="/HotelNeptune/contact">Contact</a></li>
-            <?php if (!$isLoggedIn) { ?>
+            <?php if (empty($_SESSION['id'])) { ?>
             <li><a class="nav-element button" href="/HotelNeptune/login">Connexion</a></li>
             <?php } else { ?>
-            <li><a class="nav-element" href="/HotelNeptune/register"><img class="profilimage" src="/HotelNeptune/image/icons/pngegg.png" alt="Image de profil"></a></li>
+            <li><a class="nav-element" href="/HotelNeptune/profil"><img class="profilimage" src="/HotelNeptune/image/icons/pngegg.png" alt="Image de profil"></a></li>
             <?php } ?>
         </ul>
     </nav>

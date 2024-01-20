@@ -1,16 +1,13 @@
 <?php
 session_start(); // pas touche sinon au coin !!!!
 
-$_COOKIE['id'] = 1;
-$isLoggedIn = !empty($_COOKIE['id']);
+$isLoggedIn = !empty($_SESSION['id']) && $_SESSION['isAdmin'];
 if (!$isLoggedIn) {
     header('Location: ../');
     exit(1);
 }
 
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
-
-
 ?>
 
 <!DOCTYPE html>
@@ -85,12 +82,14 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
             </form>
             <div class="SuitesCards">
                 <?php
-                    for ($i=0; $i < 5; $i++) { 
+                    $query = $db->prepare('SELECT * FROM utilisateur;');
+                    $query->execute();
+                    $users = $query->fetchAll();
+                    foreach ($users as $user => $value) { 
                 ?> 
                 <div class="suiteCard">
-                    <h3>ID 054</h3>
-                    <p>Chambre 01</p>
-                    <p>Jean-Sébastien Dubois</p>
+                    <h3>ID <?php echo($value['id']) ?></h3>
+                    <p><?php echo($value['nom']." ".$value['prenom']) ?></p>
                     <button type="button" class="managebtn" >Manage</button>
                     <button type="button" class="deletebtn" >Delete</button>
                 </div>

@@ -8,27 +8,27 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
 $message = 'ok';
 
 // Si le formulaire est soumis et complet
-if (!empty($_POST['mail']) && !empty($_POST['password'])) {
+if (!empty($_POST['email']) && !empty($_POST['password'])) {
     // On récupère l'utilisateur correspondant au mail
-    $query = $db->prepare('SELECT * FROM Utilisateur WHERE mail = :mail');
+    $query = $db->prepare('SELECT * FROM utilisateur WHERE email = :email;');
     $query->execute([
-        'mail' => $_POST['mail']
+        'email' => $_POST['email']
     ]);
     $user = $query->fetch();
 
     // Si l'utilisateur existe
-    if ($user) {
+    if (!empty($user)) {
         // On vérifie que le mot de passe est correct
-        if (password_verify($_POST['password'], $user['password'])) {
+        if (password_verify($_POST['password'], $user['passwd'])) {
             // On connecte l'utilisateur
             $_SESSION['id'] = $user['id'];
-            $_SESSION['mail'] = $user['mail'];
+            $_SESSION['email'] = $user['email'];
             $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['lastname'] = $user['lastname'];
             $_SESSION['role'] = $user['role'];
 
             // On redirige vers la page d'accueil
-            header('Location: index.php');
+            header('Location: ../index.php');
             exit;
         }
     }
@@ -56,8 +56,8 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
             <form action="" method="post">
                 <h1>Se connecter</h1>
 
-                <label for="mail">Email</label>
-                <input type="email" name="mail" id="mail" placeholder="Adresse E-mail">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Adresse E-mail">
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe">
