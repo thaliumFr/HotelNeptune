@@ -1,5 +1,5 @@
 <?php
-session_start(); // pas touche sinon au coin !!!!
+session_start();
 
 $isLoggedIn = isset($_COOKIE['id']);
 
@@ -45,13 +45,42 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
         <section class="Section2 mainPageSect">
         <h1>Votre voyage commence ici</h1>
         <ul>
-            <li class="imgSuite"><img src="./image/Suites/Voyage au centre de la mer-3.jpg">Voyage au centre de la mer</li>
-            <li class="imgSuite"><img src="./image/Suites/Entre ciel et eau.webp">Entre ciel et eau</li>
-            <li class="imgSuite"><img src="./image/Suites/Sérénité Littorale.jpg">Sérénité Littorale</li>
-            <li class="imgSuite"><img src="./image/Suites/Refuge Marin.jpg">Refuge Marin</li>
-            <li class="imgSuite"><img src="./image/Suites/Suite Horizon.jpg">Suite Horizon</li>
-            <li class="imgSuite"><img src="./image/Suites/Suite Maritime.webp">Suite Maritime</li>
-            <li class="imgSuite"><img src="./image/Suites/Suite Océane.jpg">Suite Océane</li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Voyage au centre de la mer-3.jpg">
+                    <span>Voyage au centre de la mer<br>description</span>
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Entre ciel et eau.webp">Entre ciel et eau
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Sérénité Littorale.jpg">Sérénité Littorale
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Refuge Marin.jpg">Refuge Marin
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Suite Horizon.jpg">Suite Horizon
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Suite Maritime.webp">Suite Maritime
+                </a>
+            </li>
+            <li class="imgSuite">
+                <a href="#">
+                    <img src="./image/Suites/Suite Océane.jpg">Suite Océane
+                </a>
+            </li>
         </ul>
         </section>
         <section class="Section3 mainPageSect"></section>

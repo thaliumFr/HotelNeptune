@@ -7,12 +7,17 @@ if (!$isLoggedIn || $_SESSION['isAdmin'] != 1) {
     exit(1);
 }
 
+/*
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));*/
+
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
 
 // Ajouter une suite
 if(isset($_POST['addSuite']) && $_POST['addSuite'] == 'addSuite'){
-    $_POST['addSuite'] = null;
     $query = $db->prepare('INSERT INTO suite (`nom`,`description`,`place`,`surface`) VALUES (?, ?, ?, ?);');
     $query->execute([
         $_POST['name'],
@@ -21,6 +26,16 @@ if(isset($_POST['addSuite']) && $_POST['addSuite'] == 'addSuite'){
         $_POST['surface']
     ]);
     echo "added";
+    $_POST['addSuite'] = null;
+
+    /*$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }*/
 }
 
 if(isset($_POST['updateSuite'])){
@@ -71,6 +86,31 @@ if(isset($_POST['deleteUser']) && $_POST['deleteUser'] != null){
     $_POST['deleteUser'] = null;
 }
 
+// IMAGE
+/*
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
+}*/
 
 
 ?>
@@ -119,6 +159,28 @@ if(isset($_POST['deleteUser']) && $_POST['deleteUser'] != null){
                     <input type="number" name="surface" id="surface" step="1" value="<?php echo($value['surface']); ?>">
                     <label for="pers">pers :</label>
                     <input type="number" name="pers" id="pers" step="1" value="<?php echo($value['place']); ?>">
+                    
+                    <Label>images</Label>
+                    <ul class="imageGallery">
+                    <?php
+                        $sql = 'SELECT * FROM illustre WHERE id = ?';
+
+                        $query = $db->prepare($sql);
+                        $query->execute([
+                            $value['id']
+                        ]);
+                        $images = $query->fetchAll();
+                        foreach ($images as $image => $data) { 
+                    ?> 
+                    <li>
+                        <img src="<?php echo($data['url']); ?>" alt=""> 
+                        <button type="submit" class="deletebtn" value="<?php echo($data['id'].','.$data['url']); ?>" id="deleteImage" name="deleteImage">X</button>
+                    </li>
+                    <?php
+                        }
+                    ?>
+                    </ul>
+
                     <label for="desc">description :</label>
                     <textarea name="desc" id="desc" cols="30" rows="10" placeholder="no description"><?php echo($value['description']); ?></textarea>
                     <button type="submit" class="validatebtn" value="<?php echo($value['id']); ?>" id="updateSuite" name="updateSuite">Enregistrer</button>
@@ -135,7 +197,7 @@ if(isset($_POST['deleteUser']) && $_POST['deleteUser'] != null){
                     <input type="number" name="pers" id="pers" step="1" placeholder="2">
                     <label for="desc">description :</label>
                     <textarea name="desc" id="desc" cols="30" rows="10" placeholder="nice view"></textarea>
-                    <button type="submit" class="validatebtn" name="addSuite" id="addSuite">Ajouter</button>
+                    <button type="submit" class="validatebtn" name="addSuite" id="addSuite" value="addSuite">Ajouter</button>
                 </form>
             </div>
         </section>

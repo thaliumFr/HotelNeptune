@@ -279,7 +279,7 @@ input{
 
     display: block;
 
-    transition: transform 0.15s ease-out;
+    transition: all 0.15s ease-out;
 
     &:hover{
         transform: scale(1.1);
@@ -373,6 +373,40 @@ input[type="search"]{
         font-weight: inherit;
         font-family: inherit;
     }
+
+    .imageGallery{
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        gap: var(--spacing);
+        list-style: none;
+        padding: 0;
+    
+        li{
+            width: fit-content;
+            position: relative;
+            &:hover .deletebtn{
+                opacity: .75;
+            }
+
+            .deletebtn{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 0;
+                width: fit-content;
+                padding:  calc(var(--spacing) / 2) var(--spacing);
+                background-color: var(--white-clr);
+            }
+        }
+
+        img{
+            object-fit: cover;
+            height: 4em;
+            aspect-ratio: 16/9;
+        }
+    }
 }
 
 .managebtn{
@@ -414,6 +448,7 @@ input[type="search"]{
 
 .Section2{
     background-image: url("./image/Activité/nMKDCUWpI8SMDy1Z9BtlBfSvp7uJvYZJJ8svStWi.jpeg");
+    margin-top: 50px;
 
     ul{
         display: flex;
@@ -422,17 +457,35 @@ input[type="search"]{
         gap: var(--spacing);
         list-style: none;
 
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
         li{
             max-height: 15em;
             width: fit-content;
+            padding: 0 50px;
+            transition: all ease-out 0.25s;
+
+            &:hover{
+                transform: scale(1.1);
+            }
         }
 
-        img{
+        a{
+            display: block;
+            height: 100%;
+            color: var(--white-clr);
+            text-decoration: none;
+
+            img{
             height: 10em;
             aspect-ratio: 16/9;
             object-fit: cover;
+            min-width: 350px;
             display: block;
-            
+            border-radius: var(--radius);
+            }
         }
     }
 }

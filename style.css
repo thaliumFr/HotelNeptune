@@ -246,7 +246,7 @@ input {
   font-size: inherit;
   color: var(--white-clr);
   display: block;
-  transition: transform 0.15s ease-out;
+  transition: all 0.15s ease-out;
 }
 .button:hover, button:hover {
   transform: scale(1.1);
@@ -329,6 +329,39 @@ input[type=search] {
   font-weight: inherit;
   font-family: inherit;
 }
+.suiteCard .imageGallery {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: var(--spacing);
+  list-style: none;
+  padding: 0;
+}
+.suiteCard .imageGallery li {
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+}
+.suiteCard .imageGallery li:hover .deletebtn {
+  opacity: 0.75;
+}
+.suiteCard .imageGallery li .deletebtn {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: calc(var(--spacing) / 2) var(--spacing);
+  background-color: var(--white-clr);
+}
+.suiteCard .imageGallery img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 4em;
+  aspect-ratio: 16/9;
+}
 
 .managebtn {
   --color: var(--secondary-clr);
@@ -367,6 +400,7 @@ input[type=search] {
 
 .Section2 {
   background-image: url("./image/Activité/nMKDCUWpI8SMDy1Z9BtlBfSvp7uJvYZJJ8svStWi.jpeg");
+  margin-top: 50px;
 }
 .Section2 ul {
   display: flex;
@@ -375,17 +409,33 @@ input[type=search] {
   gap: var(--spacing);
   list-style: none;
 }
+.Section2 ul::-webkit-scrollbar {
+  display: none;
+}
 .Section2 ul li {
   max-height: 15em;
   width: -moz-fit-content;
   width: fit-content;
+  padding: 0 50px;
+  transition: all ease-out 0.25s;
 }
-.Section2 ul img {
+.Section2 ul li:hover {
+  transform: scale(1.1);
+}
+.Section2 ul a {
+  display: block;
+  height: 100%;
+  color: var(--white-clr);
+  text-decoration: none;
+}
+.Section2 ul a img {
   height: 10em;
   aspect-ratio: 16/9;
   -o-object-fit: cover;
      object-fit: cover;
+  min-width: 350px;
   display: block;
+  border-radius: var(--radius);
 }
 
 .mainPageSect {
