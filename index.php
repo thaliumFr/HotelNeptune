@@ -32,7 +32,7 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 </form>
             </div>
         </header>
-        <section class="Section1" data-parallax="0.1">
+        <section class="Section1 mainPageSect" data-parallax="0.1" data-offset="0">
             <div>
                 <h1>Voyage Entre ciel et mer</h1>
                 <p>
@@ -42,10 +42,19 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 </p>
             </div>
         </section>
-        <section>
-            
+        <section class="Section2 mainPageSect">
+        <h1>Votre voyage commence ici</h1>
+        <ul>
+            <li class="imgSuite"><img src="./image/Suites/Voyage au centre de la mer-3.jpg">Voyage au centre de la mer</li>
+            <li class="imgSuite"><img src="./image/Suites/Entre ciel et eau.webp">Entre ciel et eau</li>
+            <li class="imgSuite"><img src="./image/Suites/Sérénité Littorale.jpg">Sérénité Littorale</li>
+            <li class="imgSuite"><img src="./image/Suites/Refuge Marin.jpg">Refuge Marin</li>
+            <li class="imgSuite"><img src="./image/Suites/Suite Horizon.jpg">Suite Horizon</li>
+            <li class="imgSuite"><img src="./image/Suites/Suite Maritime.webp">Suite Maritime</li>
+            <li class="imgSuite"><img src="./image/Suites/Suite Océane.jpg">Suite Océane</li>
+        </ul>
         </section>
-        <section></section>
+        <section class="Section3 mainPageSect"></section>
     </div>
 
     <script src="index.js" defer></script>

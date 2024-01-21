@@ -212,6 +212,8 @@ header{
 
 section{
     margin: 0 auto;
+    width: 90%;
+    min-width: 500px;
 }
 
 label{
@@ -404,9 +406,38 @@ input[type="search"]{
     div{
         margin-top: 0;
     }
+
+    h1{
+        color: var(--white-clr);
+    }
 }
 
-section{
+.Section2{
+    background-image: url("./image/Activité/nMKDCUWpI8SMDy1Z9BtlBfSvp7uJvYZJJ8svStWi.jpeg");
+
+    ul{
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        gap: var(--spacing);
+        list-style: none;
+
+        li{
+            max-height: 15em;
+            width: fit-content;
+        }
+
+        img{
+            height: 10em;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            
+        }
+    }
+}
+
+.mainPageSect{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -414,10 +445,6 @@ section{
     width: 100%;
 
     padding: calc(var(--spacing)*8) 0;
-
-    h1{
-        color: var(--white-clr);
-    }
 
     p{
         width: 60ch;

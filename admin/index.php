@@ -46,6 +46,33 @@ if(isset($_POST['deleteSuite']) && $_POST['deleteSuite'] != null){
 
 
 
+if(isset($_POST['updateUser'])){
+    $query = $db->prepare('UPDATE `utilisateur` SET `nom`=?,`email`= ? ,`prenom`= ? ,`tel`= ? ,`adresse`= ? ,`ville`= ? ,`CP`= ?, isAdmin = ?  WHERE `id`= ? ');
+    $query->execute([
+        $_POST['nom'],
+        $_POST['email'],
+        $_POST['prenom'],
+        $_POST['tel'],
+        $_POST['adresse'],
+        $_POST['ville'],
+        $_POST['CP'],
+        isset($_POST['isAdmin']) == 0 ? 0 : 1,
+        $_POST['updateUser']
+    ]);
+    echo "updated";
+}
+
+if(isset($_POST['deleteUser']) && $_POST['deleteUser'] != null){
+    $query = $db->prepare('DELETE FROM utilisateur WHERE id = ?;');
+    $query->execute([
+        $_POST['deleteUser']
+    ]);
+    echo "deleted";
+    $_POST['deleteUser'] = null;
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -140,12 +167,18 @@ if(isset($_POST['deleteSuite']) && $_POST['deleteSuite'] != null){
             <h2>Clients</h2>
             <form action="" method="get">
                 <span class="search">
-                    <input type="search" name="user" id="user" placeholder="Rechercher client">
+                    <input type="search" name="user" id="user" placeholder="Rechercher client" value="<?php if (!empty($_GET['user'])) {
+                        echo ($_GET['user']);
+                    }; ?>">
                 </span>
             </form>
             <div class="SuitesCards">
                 <?php
-                    $query = $db->prepare('SELECT * FROM utilisateur;');
+                    $sql = 'SELECT * FROM utilisateur';
+                    if (!empty($_GET['user'])) {
+                        $sql .= " WHERE nom LIKE '%".$_GET['user']."%' OR prenom LIKE '%".$_GET['user']."%' OR email LIKE '%".$_GET['user']."%' OR CP LIKE '%".$_GET['user']."%'";
+                    }
+                    $query = $db->prepare($sql);
                     $query->execute();
                     $users = $query->fetchAll();
                     foreach ($users as $user => $value) { 
@@ -153,27 +186,30 @@ if(isset($_POST['deleteSuite']) && $_POST['deleteSuite'] != null){
                 <form class="suiteCard" method="post">
                     <h3>ID <?php echo($value['id']) ?></h3>
                     <label for="name">nom</label>
-                    <input type="number" name="name" id="name" step="1" value="<?php echo($value['name']); ?>">
-                    <label for="name">nom</label>
-                    <input type="number" name="name" id="name" step="1" value="<?php echo($value['name']); ?>
-                    <label for="pers">pers :</label>
-                    <input type="number" name="pers" id="pers" step="1" value="<?php echo($value['place']); ?>">
-                    <label for="desc">description :</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10" placeholder="no description"><?php echo($value['description']); ?></textarea>
-                    <button type="submit" class="validatebtn" value="<?php echo($value['id']); ?>" id="updateSuite" name="updateSuite">Enregistrer</button>
-                    <button type="submit" class="deletebtn" value="<?php echo($value['id']); ?>" id="deleteSuite" name="deleteSuite">Supprimer</button>
-                </form>
-                <form class="suiteCard" method="get">
-                    <h3>ID <?php echo($value['id']) ?></h3>
-                    <p><?php echo($value['nom']." ".$value['prenom']); ?></p>
-                    <p><?php echo($value['email']); ?></p>
-                    <p><?php echo($value['tel']); ?></p>
-                    <p><?php 
-                        if (!empty($value['adresse']) && !empty($value['ville']) && !empty($value['CP'])) {
-                            echo($value['adresse'].", ".$value['ville'].", ".$value['CP']); 
-                        }
-                    ?></p>
-                    <button type="button" class="managebtn" >Gérer</button>
+                    <input type="text" name="nom" id="nom" value="<?php echo($value['nom']); ?>" placeholder="nom">
+
+                    <label for="name">prenom</label>
+                    <input type="text" name="prenom" id="prenom" value="<?php echo($value['prenom']); ?>" placeholder="prenom">
+
+                    <label for="pers">email</label>
+                    <input type="email" name="email" id="email" value="<?php echo($value['email']); ?>" placeholder="email">
+
+                    <label for="tel">téléphone</label>
+                    <input type="tel" name="tel" id="tel" value="<?php echo($value['tel']); ?>" placeholder="téléphone">
+
+                    <label for="adresse">adresse</label>
+                    <input type="text" name="adresse" id="adresse" value="<?php echo($value['adresse']); ?>" placeholder="addresse">
+
+                    <label for="name">ville</label>
+                    <input type="text" name="ville" id="ville" value="<?php echo($value['ville']); ?>" placeholder="ville">
+
+                    <label for="CP">CP</label>
+                    <input type="number" min=10000 max=99999 name="CP" id="CP" value="<?php echo($value['CP']); ?>" placeholder="CP">
+
+                    <label for="isAdmin">est admin</label>
+                    <input type="checkbox" name="isAdmin" id="isAdmin" value="0" <?php echo ($value['isAdmin']==1 ? 'checked' : '');?>>
+
+                    <button type="submit" class="validatebtn" value="<?php echo($value['id']); ?>" id="updateUser" name="updateUser">Enregistrer</button>
                     <button type="submit" class="deletebtn" value="<?php echo($value['id']); ?>" id="deleteUser" name="deleteUser">Supprimer</button>
                 </form>
                 <?php } ?>

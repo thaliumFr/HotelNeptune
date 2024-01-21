@@ -6,7 +6,7 @@ $isLoggedIn = empty($_COOKIE['id']);
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
 $message = 'ok';
-if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['password2'])) {
+if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['password2'])) {
     $message = "Veuillez remplir tous les champs";
 }
 
@@ -25,7 +25,7 @@ if($message === 'ok'){
     } else {
         // Inscrire l'utilisateur
         $query = $db->prepare('INSERT INTO Utilisateur (nom, prenom, email, passwd) VALUES (?, ?, ?, ?)');
-        $query->execute([$_POST['nom'], $_POST['prenom'], $_POST['mail'], password_hash($_POST['password'], PASSWORD_DEFAULT)]);
+        $query->execute([$_POST['nom'], $_POST['prenom'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT)]);
         $message = "Vous êtes inscrit";
 
         $query = $db->prepare('SELECT * FROM utilisateur WHERE email = :email;');
@@ -34,12 +34,12 @@ if($message === 'ok'){
         ]);
         $user = $query->fetch();
 
-         // On connecte l'utilisateur
-         $_SESSION['id'] = $user['id'];
-         $_SESSION['email'] = $user['email'];
-         $_SESSION['firstname'] = $user['firstname'];
-         $_SESSION['lastname'] = $user['lastname'];
-         $_SESSION['isAdmin'] = $user['isAdmin'];
+        // On connecte l'utilisateur
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['firstname'] = $user['firstname'];
+        $_SESSION['lastname'] = $user['lastname'];
+        $_SESSION['isAdmin'] = 0;
 
          // On redirige vers la page d'accueil
          header('Location: ../index.php');
@@ -74,8 +74,8 @@ if($message === 'ok'){
                 <label for="prenom">Prénom</label>
                 <input type="text" name="prenom" id="prenom" placeholder="Prénom">
 
-                <label for="mail">Email</label>
-                <input type="email" name="mail" id="mail" placeholder="Adresse E-mail">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Adresse E-mail">
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe">

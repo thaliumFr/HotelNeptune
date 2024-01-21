@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Julius+Sans+One&family=Leckerli+One&family=Smooch&display=swap");
 :root {
@@ -185,6 +186,8 @@ header form input {
 
 section {
   margin: 0 auto;
+  width: 90%;
+  min-width: 500px;
 }
 
 label {
@@ -358,8 +361,34 @@ input[type=search] {
 .Section1 div {
   margin-top: 0;
 }
+.Section1 h1 {
+  color: var(--white-clr);
+}
 
-section {
+.Section2 {
+  background-image: url("./image/Activité/nMKDCUWpI8SMDy1Z9BtlBfSvp7uJvYZJJ8svStWi.jpeg");
+}
+.Section2 ul {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: var(--spacing);
+  list-style: none;
+}
+.Section2 ul li {
+  max-height: 15em;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.Section2 ul img {
+  height: 10em;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+.mainPageSect {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -367,10 +396,7 @@ section {
   width: 100%;
   padding: calc(var(--spacing) * 8) 0;
 }
-section h1 {
-  color: var(--white-clr);
-}
-section p {
+.mainPageSect p {
   width: 60ch;
   margin: calc(var(--spacing) * 4) auto;
 }
