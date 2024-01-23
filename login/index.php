@@ -39,17 +39,19 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <title>Hotel Neptune</title>
 </head>
+
 <body>
     <?php
     require_once('../navbar.php');
     ?>
-    
+
     <!-- Container = Site entier -->
     <div class="container">
         <header data-parallax>
@@ -61,9 +63,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe">
-                
-                <?php if($message !== 'ok'){ ?>
-                <label class="err"><?php echo $message; ?></label>
+
+                <?php if ($message !== 'ok') { ?>
+                    <label class="err"><?php echo $message; ?></label>
                 <?php } ?>
 
                 <input type="submit" value="Se connecter">
@@ -71,7 +73,11 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         </header>
         <p>Pas encore de compte? <a href="../register/">Nous rejoindre!</a></p>
     </div>
+    <?php
+    require_once('../footer.php');
+    ?>
 
     <script src="../index.js" defer></script>
 </body>
+
 </html>

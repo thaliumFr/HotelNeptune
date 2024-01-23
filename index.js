@@ -15,3 +15,16 @@ document.addEventListener('scroll', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     parallax();
 })
+
+function ToggleId(id) {
+    const el = document.getElementById(id);
+    console.log(el.style.display);
+    if (el.style.display == "none" || el.style.display == "") {
+        el.style.display = "block";
+        console.log("block")
+      } else {
+        el.style.display = "none";
+        console.log("none")
+      }
+}
+
