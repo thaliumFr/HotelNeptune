@@ -7,24 +7,20 @@ if (!$isLoggedIn || $_SESSION['isAdmin'] != 1) {
     exit(1);
 }
 
-/*
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));*/
-
 $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.durand', 's3cr3t');
 
 
 // Ajouter une suite
 if (isset($_POST['addSuite']) && $_POST['addSuite'] == 'addSuite') {
     $_POST['addSuite'] = null;
-    $query = $db->prepare('INSERT INTO suite (`nom`,`description`,`place`,`surface`) VALUES (?, ?, ?, ?);');
+    $query = $db->prepare('INSERT INTO suite (`nom`,`description`,`place`,`surface`, `price`) VALUES (?, ?, ?, ?, ?);');
     $query->execute([
         $_POST['name'],
         $_POST['desc'],
         $_POST['pers'],
-        $_POST['surface']
+        $_POST['surface'],
+        $_POST['price'],
+
     ]);
     echo "added";
     unset($_POST);
@@ -48,11 +44,17 @@ if (!empty($_POST['addImg']) && !empty($_POST['imageLink'])) {
         $_POST['imageLink']
     ]);
 
-    if (empty($query->fetch())) {
-        $query = $db->prepare('INSERT INTO `image` VALUES (?);');
-        $query->execute([
-            $_POST['imageLink']
-        ]);
+    $imgs = $query->fetchAll();
+
+    if (empty($imgs)) {
+        try {
+            $query = $db->prepare('INSERT INTO `image` VALUES (?);');
+            $query->execute([
+                $_POST['imageLink']
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     $query = $db->prepare('INSERT INTO `illustre` VALUES (?, ?);');
@@ -68,12 +70,13 @@ if (!empty($_POST['addImg']) && !empty($_POST['imageLink'])) {
 }
 
 if (isset($_POST['updateSuite'])) {
-    $query = $db->prepare('UPDATE suite SET `nom` = ?,`description` = ?,`place` = ?,`surface` = ? WHERE id = ?;');
+    $query = $db->prepare('UPDATE suite SET `nom` = ?,`description` = ?,`place` = ?,`surface` = ?, `price` = ? WHERE id = ?;');
     $query->execute([
         $_POST['name'],
         $_POST['desc'],
         $_POST['pers'],
         $_POST['surface'],
+        $_POST['price'],
         $_POST['updateSuite']
     ]);
     echo "updated";
@@ -196,6 +199,9 @@ if (isset($_POST['deleteReservation'])) {
                         <input type="number" name="surface" id="surface" step="1" value="<?php echo ($value['surface']); ?>">
                         <label for="pers">pers :</label>
                         <input type="number" name="pers" id="pers" step="1" value="<?php echo ($value['place']); ?>">
+                        <label for="price">prix :</label>
+                        <input type="number" name="price" id="price" step="1" value="<?php echo ($value['price']); ?>">
+
 
                         <Label>images</Label>
                         <ul class="imageGallery">
@@ -235,6 +241,8 @@ if (isset($_POST['deleteReservation'])) {
                     <input type="number" name="surface" id="surface" step="1" placeholder="9">
                     <label for="pers">pers :</label>
                     <input type="number" name="pers" id="pers" step="1" placeholder="2">
+                    <label for="price">prix :</label>
+                    <input type="number" name="price" id="price" step="1" placeholder="150">
                     <label for="desc">description :</label>
                     <textarea name="desc" id="desc" cols="30" rows="10" placeholder="nice view"></textarea>
                     <button type="submit" class="validatebtn" name="addSuite" id="addSuite" value="addSuite">Ajouter</button>
@@ -274,7 +282,7 @@ if (isset($_POST['deleteReservation'])) {
 
                     $date = new DateTime($value['jour']);
                 ?>
-                    <form class="suiteCard" method="post">
+                    <form class="suiteCard " method="post">
                         <h3><?php echo ($utilisateur['nom'] . " " . $utilisateur['prenom']); ?></h3>
                         <p><?php echo ($suite['nom']); ?></p>
                         <p><?php echo (date_format($date, "d F Y")); ?></p>
@@ -289,7 +297,7 @@ if (isset($_POST['deleteReservation'])) {
                         <button type="submit" class="deletebtn" value="<?php echo ($value['jour'] . ";" . $value['id']); ?>" id="deleteReservation" name="deleteReservation">Refuser</button>
                     </form>
                 <?php } ?>
-                <form class="suiteCard" method="post">
+                <form class="suiteCard add" method="post">
                     <h3>
                         <select name="userSelect" id="userSelect">
                             <?php

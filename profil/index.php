@@ -99,9 +99,62 @@ if (isset($_POST['DisconnectUser']) && $_POST['DisconnectUser'] != null) {
             <button type="submit" class="deletebtn" value="DisconnectUser" id="DisconnectUser" name="DisconnectUser">Se déconnecter</button>
             <button type="submit" class="deletebtn" value="<?php echo ($value['id']); ?>" id="deleteUser" name="deleteUser">Supprimer</button>
         </form>
+
+        <!-- RESERVATIONS -->
+        <section>
+            <h2>Réservations</h2>
+            <div class="SuitesCards">
+                <?php
+                $sql = 'SELECT * FROM reserve WHERE id_1 = ?';
+                if (!empty($_GET['reserv'])) {
+                    $sql .= " AND jour LIKE '%" . $_GET['reserv'] . "%'";
+                }
+                $sql .= " ORDER BY jour ASC";
+
+                $query = $db->prepare($sql);
+                $query->execute([$_SESSION['id']]);
+                $reservations = $query->fetchAll();
+
+                foreach ($reservations as $reservation => $value) {
+                    // get the clients names
+                    $sql = 'SELECT id, nom, prenom FROM utilisateur WHERE id = ?';
+
+                    $query = $db->prepare($sql);
+                    $query->execute([$_SESSION['id']]);
+                    $utilisateur = $query->fetch();
+
+                    // get the suite, by the way
+                    $sql = 'SELECT id, nom, price FROM suite';
+
+                    $query = $db->prepare($sql);
+                    $query->execute();
+                    $suite = $query->fetch();
+
+                    $date = new DateTime($value['jour']);
+                ?>
+                    <form class="suiteCard" method="post">
+                        <h3><?php echo ($suite['nom']); ?></h3>
+                        <p><?php echo (date_format($date, "d F Y")); ?></p>
+                        <p><?php echo ($suite['price']); ?>€</p>
+                        <?php
+                        if (empty($value['valide']) || $value['valide'] == 0) {
+                        ?>
+                            <p>En attente</p>
+                        <?php } else { ?>
+                            <p>Validé</p>
+                        <?php } ?>
+
+                        <button type="submit" class="deletebtn" value="<?php echo ($value['jour'] . ";" . $value['id']); ?>" id="deleteReservation" name="deleteReservation">Annuler</button>
+                    </form>
+                <?php } ?>
+            </div>
+        </section>
+
         <?php
         require_once('../footer.php');
         ?>
+
+
     </section>
 </body>
 

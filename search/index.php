@@ -42,6 +42,11 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                                                                                                         if (!empty($_GET['surface'])) {
                                                                                                             echo ($_GET['surface']);
                                                                                                         }; ?>">
+
+            <input type="number" min="0" name="price" id="price" placeholder="prix (€)" value="<?php
+                                                                                                if (!empty($_GET['price'])) {
+                                                                                                    echo ($_GET['price']);
+                                                                                                }; ?>">
             <input type="submit" value="search">
         </form>
         <div class="tags">
@@ -54,66 +59,74 @@ $db = new PDO('mysql:host=localhost;dbname=hotelneptune;charset=utf8', 'pierre.d
                 <div class="tag">
                     <?php echo $_GET['pers'] ?> personnes
                 </div>
-            <?php } ?>
-        </div>
-
-
-        <?php
-        $sql = 'SELECT * FROM suite WHERE 1';
-        if (!empty($_GET['chambre'])) {
-            $sql .= " AND nom LIKE '%" . $_GET['chambre'] . "%'";
-        }
-        if (!empty($_GET['surface'])) {
-            $sql .= " AND surface >=" . $_GET['surface'];
-        }
-        if (!empty($_GET['pers'])) {
-            $sql .= " AND place >=" . $_GET['pers'];
-        }
-
-
-        $query = $db->prepare($sql);
-        $query->execute();
-        $suites = $query->fetchAll();
-        foreach ($suites as $suite => $value) {
-        ?>
-            <div class="SearchCard">
-                <h3><?php echo ($value['nom']); ?></h3>
-                <div class="details">
-                    <ul class="imageGallery">
-                        <?php
-                        $sql = 'SELECT * FROM illustre WHERE id = ?';
-
-                        $query = $db->prepare($sql);
-                        $query->execute([
-                            $value['id']
-                        ]);
-                        $data = $query->fetch();
-                        if ($data) {
-                        ?>
-                            <li>
-                                <img src="<?php echo ($data['url']); ?>" alt="<?php echo ($data['id']); ?>">
-                            </li>
-                        <?php } ?>
-                    </ul>
-                    <div class="text">
-                        <p>
-                            <?php echo ($value['surface']); ?> m²
-                        </p>
-                        <p>
-                            <?php echo ($value['place']); ?> personnes
-                        </p>
-
-                        <label for="desc">description :</label>
-                        <p><?php echo ($value['description']); ?></p>
-                        <a href="/HotelNeptune/suite?id=<?php echo ($value['id']); ?>" class="button">Découvrir</a>
-                    </div>
-
+            <?php
+            }
+            if (!empty($_GET['price'])) { ?>
+                <div class="tag">
+                    < <?php echo $_GET['price'] ?> € </div>
+                    <?php } ?>
                 </div>
 
-            </div>
-        <?php
-        }
-        ?>
+
+                <?php
+                $sql = 'SELECT * FROM suite WHERE 1';
+                if (!empty($_GET['chambre'])) {
+                    $sql .= " AND nom LIKE '%" . $_GET['chambre'] . "%'";
+                }
+                if (!empty($_GET['surface'])) {
+                    $sql .= " AND surface >=" . $_GET['surface'];
+                }
+                if (!empty($_GET['pers'])) {
+                    $sql .= " AND place >=" . $_GET['pers'];
+                }
+                if (!empty($_GET['price'])) {
+                    $sql .= " AND price <=" . $_GET['price'];
+                }
+
+
+                $query = $db->prepare($sql);
+                $query->execute();
+                $suites = $query->fetchAll();
+                foreach ($suites as $suite => $value) {
+                ?>
+                    <div class="SearchCard">
+                        <h3><?php echo ($value['nom']); ?></h3>
+                        <div class="details">
+                            <ul class="imageGallery">
+                                <?php
+                                $sql = 'SELECT * FROM illustre WHERE id = ?';
+
+                                $query = $db->prepare($sql);
+                                $query->execute([
+                                    $value['id']
+                                ]);
+                                $data = $query->fetch();
+                                if ($data) {
+                                ?>
+                                    <li>
+                                        <img src="<?php echo ($data['url']); ?>" alt="<?php echo ($data['id']); ?>">
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                            <div class="text">
+                                <p>
+                                    <?php echo ($value['surface']); ?> m²
+                                </p>
+                                <p>
+                                    <?php echo ($value['place']); ?> personnes
+                                </p>
+                                <p>
+                                    <?php echo ($value['price']); ?> €
+                                </p>
+                                <a href="/HotelNeptune/suite?id=<?php echo ($value['id']); ?>" class="button">Découvrir</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                <?php
+                }
+                ?>
     </section>
 
     <?php

@@ -94,6 +94,7 @@ if (!empty($_POST['reserve']) && !empty($_POST['end']) && !empty($_POST['start']
                     <?php echo ($value['place']); ?> personnes
                 </p>
                 <p><?php echo ($value['description']); ?></p>
+                <p><?php echo ($value['price']); ?> € / nuit</p>
                 <button onclick="ToggleId('popup');">reserver</button>
             </div>
         </section>
@@ -102,9 +103,11 @@ if (!empty($_POST['reserve']) && !empty($_POST['end']) && !empty($_POST['start']
             <button type="button" onclick="ToggleId('popup');" class="deletebtn"><- retour</button>
                     <h3>Reserver</h3>
                     <label for="start">Début</label>
-                    <input type="date" name="start" id="start">
+                    <input type="date" name="start" id="start" onchange="updatePrice(<?php echo ($value['price']); ?>)">
                     <label for="end">Fin</label>
-                    <input type="date" name="end" id="end">
+                    <input type="date" name="end" id="end" onchange="updatePrice(<?php echo ($value['price']); ?>)">
+
+                    <label id="price"></label>
                     <p class="err"><?php if (!empty($_POST['err'])) echo $_POST['err']; ?></p>
                     <button type="submit" name="reserve" id="reserve" value="reserve" class="validatebtn">Reserver !</button>
         </form>
